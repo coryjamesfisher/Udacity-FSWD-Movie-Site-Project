@@ -1,6 +1,7 @@
 import webbrowser
 import os
 import re
+import json
 
 
 # Styles and scripting for the page
@@ -154,16 +155,11 @@ def create_movie_tiles_content(movies):
     return content
 
 def moviesToJson(movies):
+
     jsonString = "["
     for movie in movies:
-        jsonString = (
-            jsonString + "{"
-            "name:\"" + movie.title + "\","
-            "storyline:\"" + movie.storyline + "\","
-            "poster_image_url:\"" + movie.poster_image_url + "\","
-            "trailer_youtube_url:\"" + movie.trailer_youtube_url + "\""
-            "},"
-        )
+        jsonString = jsonString + json.dumps(movie.__dict__) + ","
+
     jsonString = jsonString[:-1] + "]"
 
     return jsonString

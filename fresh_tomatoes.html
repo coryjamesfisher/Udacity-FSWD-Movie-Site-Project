@@ -19,7 +19,7 @@
            return (
                    <div style={{width: 300 + 'px', float: 'left'}}>
                        <img src={mov.poster_image_url}/>
-                       {mov.name}
+                       {mov.title}
                        {mov.storyline}
                    </div>
            )
@@ -65,11 +65,11 @@
             console.log(this.props);
             this.props.movies.forEach(function(movie) {
 
-                if (movie.name.indexOf(this.props.filterText) === -1) {
+                if (movie.title.indexOf(this.props.filterText) === -1) {
                     return;
                 }
 
-                rows.push(<MovieGridCard movie={movie} key={movie.name}></MovieGridCard>);
+                rows.push(<MovieGridCard movie={movie} key={movie.title}></MovieGridCard>);
             }.bind(this));
             return (
                     <div>
@@ -112,8 +112,7 @@
         }
     });
 
-    var movies = [{name:"Spirited Away",storyline:"During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",poster_image_url:"https://upload.wikimedia.org/wikipedia/en/3/30/Spirited_Away_poster.JPG",trailer_youtube_url:"https://www.youtube.com/watch?v=ByXuk9QqQkk"},{name:"Princess Mononoke",storyline:"On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime.",poster_image_url:"http://ia.media-imdb.com/images/M/MV5BMjgzNTUwODQzN15BMl5BanBnXkFtZTcwMTc4ODE3OQ@@._V1_SX214_AL_.jpg",trailer_youtube_url:"https://www.youtube.com/watch?v=4OiMOHRDs14"},{name:"Howl's Moving Castle",storyline:"When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.",poster_image_url:"http://ia.media-imdb.com/images/M/MV5BMTY1OTg0MjE3MV5BMl5BanBnXkFtZTcwNTUxMTkyMQ@@._V1_SX214_AL_.jpg",trailer_youtube_url:"https://www.youtube.com/watch?v=iwROgK94zcM"},{name:"Kiki's Delivery Service",storyline:"A young witch, on her mandatory year of independent life, finds fitting into a new community difficult while she supports herself by running an air courier service.",poster_image_url:"http://ia.media-imdb.com/images/M/MV5BOTc0ODM1Njk1NF5BMl5BanBnXkFtZTcwMDI5OTEyNw@@._V1_SY317_CR4,0,214,317_AL_.jpg",trailer_youtube_url:"https://www.youtube.com/watch?v=4bG17OYs-GA"},{name:"Nausicaä of the Valley of the Wind",storyline:"Warrior/pacifist Princess Nausicaä desperately struggles to prevent two warring nations from destroying themselves and their dying planet.",poster_image_url:"http://ia.media-imdb.com/images/M/MV5BMTM1NjIxNTY4OF5BMl5BanBnXkFtZTcwNDE5MDIyNw@@._V1_SY317_CR5,0,214,317_AL_.jpg",trailer_youtube_url:"https://www.youtube.com/watch?v=6zhLBe319KE"}];
-//    movies.push({name:"Princess Mononoke", storyline:"On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime."});
+    var movies = [{"poster_image_url": "https://upload.wikimedia.org/wikipedia/en/3/30/Spirited_Away_poster.JPG", "storyline": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.", "trailer_youtube_url": "https://www.youtube.com/watch?v=ByXuk9QqQkk", "title": "Spirited Away"},{"poster_image_url": "http://ia.media-imdb.com/images/M/MV5BMjgzNTUwODQzN15BMl5BanBnXkFtZTcwMTc4ODE3OQ@@._V1_SX214_AL_.jpg", "storyline": "On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime.", "trailer_youtube_url": "https://www.youtube.com/watch?v=4OiMOHRDs14", "title": "Princess Mononoke"},{"poster_image_url": "http://ia.media-imdb.com/images/M/MV5BMTY1OTg0MjE3MV5BMl5BanBnXkFtZTcwNTUxMTkyMQ@@._V1_SX214_AL_.jpg", "storyline": "When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.", "trailer_youtube_url": "https://www.youtube.com/watch?v=iwROgK94zcM", "title": "Howl's Moving Castle"},{"poster_image_url": "http://ia.media-imdb.com/images/M/MV5BOTc0ODM1Njk1NF5BMl5BanBnXkFtZTcwMDI5OTEyNw@@._V1_SY317_CR4,0,214,317_AL_.jpg", "storyline": "A young witch, on her mandatory year of independent life, finds fitting into a new community difficult while she supports herself by running an air courier service.", "trailer_youtube_url": "https://www.youtube.com/watch?v=4bG17OYs-GA", "title": "Kiki's Delivery Service"},{"poster_image_url": "http://ia.media-imdb.com/images/M/MV5BMTM1NjIxNTY4OF5BMl5BanBnXkFtZTcwNDE5MDIyNw@@._V1_SY317_CR5,0,214,317_AL_.jpg", "storyline": "Warrior/pacifist Princess Nausica\u00e4 desperately struggles to prevent two warring nations from destroying themselves and their dying planet.", "trailer_youtube_url": "https://www.youtube.com/watch?v=6zhLBe319KE", "title": "Nausica\u00e4 of the Valley of the Wind"}];
 
     React.render(<MoviePage movies={movies} />, document.body)
 </script>
