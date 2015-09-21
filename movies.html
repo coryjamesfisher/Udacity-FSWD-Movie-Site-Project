@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script src="https://fb.me/react-0.13.3.js"></script>
+<!--<script src="https://fb.me/react-0.13.3.min.js"></script>-->
+<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+<script type="text/jsx">
+
+    var MovieGridCard = React.createClass({
+       render: function() {
+
+           var mov = this.props.movie;
+
+           return (
+                   <div style={{width: 300 + 'px', float: 'left'}}>
+                       <img src={mov.poster_image_url}/>
+                       {mov.name}
+                       {mov.storyline}
+                   </div>
+           )
+       }
+    });
+
+    var SearchBar = React.createClass({
+        handleChange: function() {
+            this.props.onUserInput(
+                    this.refs.filterTextInput.getDOMNode().value,
+                    this.refs.moviesWithBooksInput.getDOMNode().checked
+            );
+        },
+        render: function() {
+            return (
+                    <form>
+                        <input
+                                type="text"
+                                placeholder="Search..."
+                                value={this.props.filterText}
+                                ref="filterTextInput"
+                                onChange={this.handleChange}
+                                />
+                        <p>
+                            <input
+                                    type="checkbox"
+                                    checked={this.props.moviesWithBooks}
+                                    ref="moviesWithBooksInput"
+                                    onChange={this.handleChange}
+                                    />
+                            {' '}
+                            Only show movies with books
+                        </p>
+                    </form>
+            );
+        }
+    });
+
+    var MovieGrid = React.createClass({
+        render: function() {
+
+            var rows = [];
+            console.log(this.props);
+            this.props.movies.forEach(function(movie) {
+
+                if (movie.name.indexOf(this.props.filterText) === -1) {
+                    return;
+                }
+
+                rows.push(<MovieGridCard movie={movie} key={movie.name}></MovieGridCard>);
+            }.bind(this));
+            return (
+                    <div>
+                        {rows}
+                    </div>
+            );
+        }
+    });
+
+    var MoviePage = React.createClass({
+        getInitialState: function() {
+            return {
+                filterText: '',
+                moviesWithBooks: false
+            };
+        },
+
+        handleUserInput: function(filterText, moviesWithBooks) {
+            this.setState({
+                filterText: filterText,
+                moviesWithBooks: moviesWithBooks
+            });
+        },
+
+        render: function() {
+            return (
+                    <div>
+                        <SearchBar
+                                filterText={this.state.filterText}
+                                moviesWithBooks={this.state.moviesWithBooks}
+                                onUserInput={this.handleUserInput}
+                                />
+                        <MovieGrid
+                                filterText={this.state.filterText}
+                                moviesWithBooks={this.state.moviesWithBooks}
+                                movies={this.props.movies}
+                                />
+                    </div>
+            );
+        }
+    });
+
+    var movies = "{%media%}";
+//    movies.push({name:"Princess Mononoke", storyline:"On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime."});
+
+    React.render(<MoviePage movies={movies} />, document.body)
+</script>
+</body>
+</html>
