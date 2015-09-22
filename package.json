@@ -1,0 +1,30 @@
+{
+  "name": "udacity-fswd-movie-site-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {
+    "bower": "^1.5.2",
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coryjamesfisher/Udacity-FSWD-Movie-Site-Project.git"
+  },
+  "author": "Cory Fisher <coryjamesfisher@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coryjamesfisher/Udacity-FSWD-Movie-Site-Project/issues"
+  },
+  "homepage": "https://github.com/coryjamesfisher/Udacity-FSWD-Movie-Site-Project#readme"
+}

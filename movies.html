@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
 
@@ -17,7 +18,7 @@
            var mov = this.props.movie;
 
            return (
-                   <div style={{width: 300 + 'px', float: 'left'}}>
+                   <div className="movie-grid-card">
                        <img src={mov.poster_image_url}/>
                        {mov.title}
                        {mov.storyline}
@@ -96,7 +97,7 @@
 
         render: function() {
             return (
-                    <div>
+                    <div className="movie-page">
                         <SearchBar
                                 filterText={this.state.filterText}
                                 moviesWithBooks={this.state.moviesWithBooks}

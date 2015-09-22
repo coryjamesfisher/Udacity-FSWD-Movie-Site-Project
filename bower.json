@@ -1,0 +1,20 @@
+{
+  "name": "Udacity-FSWD-Movie-Site-Project",
+  "version": "0.0.0",
+  "homepage": "https://github.com/coryjamesfisher/Udacity-FSWD-Movie-Site-Project",
+  "authors": [
+    "Cory Fisher <coryjamesfisher@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "compass-breakpoint": "breakpoint-sass#~2.6.1",
+    "susy": "~2.2.6"
+  }
+}

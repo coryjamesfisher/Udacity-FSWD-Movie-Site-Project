@@ -1,0 +1,45 @@
+@import "../bower_components/susy/sass/susy";
+@import "../bower_components/compass-breakpoint/stylesheets/breakpoint";
+
+$susy: (
+  columns: 12, 
+  container: 1140px,
+  gutters: 0.25,
+  global-box-sizing: border-box,
+  debug: (image: show-columns)
+ );
+
+.movie-page {
+  @include span(12);
+  @include breakpoint(min-width 800px) {
+    @include span(9);
+    margin-left: span(3);
+  }
+}
+
+.movie-grid-card {
+  @include span(12);
+  float: left;
+
+  @include breakpoint(min-width 800px) {
+    @include span(3);
+  }
+}
+/*
+.testing {
+  @include span(12);
+}
+
+.testing2 {
+  @include span(2);
+  margin-left: span(4);
+}
+
+.testing3 {
+  @include span(2);
+  margin-left: span(6);
+  @include breakpoint(20em) {
+    @include span(4); 
+    margin-left: span(3);
+  }
+}*/
