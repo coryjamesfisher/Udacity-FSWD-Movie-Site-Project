@@ -3,28 +3,56 @@
 
 $susy: (
   columns: 12, 
-  container: 1140px,
+  //container: 1140px,
   gutters: 0.25,
   global-box-sizing: border-box,
   debug: (image: show-columns)
  );
 
+@include border-box-sizing;
+
+.wrap {
+  @include container;
+}
+
 .movie-page {
   @include span(12);
-  @include breakpoint(min-width 800px) {
-    @include span(9);
-    margin-left: span(3);
+  @include breakpoint(min-width 700px) {
+    @include span(10);
+    margin-left: span(2);
   }
 }
 
 .movie-grid-card {
   @include span(12);
-  float: left;
 
-  @include breakpoint(min-width 800px) {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  // Tablet or higher
+  @include breakpoint(min-width 700px) {
+    @include span(5);
+
+    img {
+      width: 220px;
+      height: 342px;
+    }
+  }
+
+  @include breakpoint(min-width 1200px) {
     @include span(3);
   }
+
+  @include breakpoint(min-width 1600px) {
+    @include span(2);
+  }
+
+  @include breakpoint(min-width 3340px) {
+    @include span(1);
+  }
 }
+
 /*
 .testing {
   @include span(12);

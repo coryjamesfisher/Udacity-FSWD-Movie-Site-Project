@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
-
+<div id="wrap" class="wrap"></div>
 <script src="https://fb.me/react-0.13.3.js"></script>
 <!--<script src="https://fb.me/react-0.13.3.min.js"></script>-->
 <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
@@ -19,8 +19,8 @@
 
            return (
                    <div className="movie-grid-card">
-                       <img src={mov.poster_image_url}/>
-                       {mov.title}
+                       <img src={mov.poster_image_url}/><br/>
+                       {mov.title}<br/>
                        {mov.storyline}
                    </div>
            )
@@ -115,7 +115,7 @@
 
     var movies = "{%media%}";
 
-    React.render(<MoviePage movies={movies} />, document.body)
+    React.render(<MoviePage movies={movies} />, document.getElementById('wrap'))
 </script>
 </body>
 </html>
