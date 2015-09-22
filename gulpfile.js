@@ -6,8 +6,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var bower = require('gulp-bower');
 
 // Gulp Sass Task 
-gulp.task('sass', function() {
-  gulp.src('./scss/{,*/}*.{scss,sass}')
+gulp.task('sass', ['bower'], function() {
+  return gulp.src('./scss/{,*/}*.{scss,sass}')
     .pipe(sourcemaps.init())
     .pipe(sass({
       errLogToConsole: true
@@ -19,8 +19,8 @@ gulp.task('sass', function() {
  
 gulp.task('bower', function() {
   return bower()
-    .pipe(gulp.dest('bower_components/'))
+    .pipe(gulp.dest('./bower_components/'))
 });
 
-gulp.task('init', ['sass', 'bower'])
+gulp.task('init', ['bower', 'sass'])
 gulp.task('default', ['sass']);
