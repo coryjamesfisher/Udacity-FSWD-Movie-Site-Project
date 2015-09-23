@@ -16,5 +16,8 @@
   "dependencies": {
     "compass-breakpoint": "breakpoint-sass#~2.6.1",
     "susy": "~2.2.6"
+  },
+  "devDependencies": {
+    "normalize-css": "normalize.css#~3.0.3"
   }
 }
