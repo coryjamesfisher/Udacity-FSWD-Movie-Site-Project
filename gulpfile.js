@@ -8,6 +8,7 @@ var cssMin = require('gulp-minify-css');
 var concat = require('gulp-concat');
 var merge = require('merge-stream');
 var modernizr = require('gulp-modernizr');
+var react = require('gulp-react');
 
 // Bower install 
 gulp.task('bower', function() {
@@ -33,7 +34,7 @@ gulp.task('sass', ['bower'], function() {
 });
 
 gulp.task('js', function() {
-  return gulp.src('./node_modules/modernizr/src/*.js')
+  gulp.src('./node_modules/modernizr/src/*.js')
 	.pipe(modernizr({
           "minify": true,
           "options": [
@@ -94,6 +95,10 @@ gulp.task('js', function() {
           ]
 	}))
 	.pipe(gulp.dest('./js/'));
+
+	return gulp.src('./js/movies.jsx')
+		.pipe(react())
+		.pipe(gulp.dest('./js/'));
 });
 
 

@@ -16,7 +16,8 @@
     "gulp-minify-css": "~1.2.1",
     "gulp-concat": "~2.6.0",
     "merge-stream": "~1.0.0",
-    "gulp-modernizr": "~1.0.0-alpha"
+    "gulp-modernizr": "~1.0.0-alpha",
+    "gulp-react": "~3.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

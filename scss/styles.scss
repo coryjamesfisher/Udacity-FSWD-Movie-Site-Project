@@ -6,8 +6,14 @@ $susy: (
   container: 1920px,
   gutters: 0.25,
   global-box-sizing: border-box,
-  debug: (image: show-columns)
- );
+//  debug: (image: show-columns)
+);
+
+// RESETS
+figure {
+	margin: 0;
+}
+// END RESETS
 
 @include border-box-sizing;
 
