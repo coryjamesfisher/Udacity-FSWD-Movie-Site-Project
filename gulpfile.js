@@ -6,7 +6,7 @@ var bower = require('gulp-bower');
 var watch = require('gulp-watch');
 var cssMin = require('gulp-minify-css');
 var concat = require('gulp-concat');
-var merge = require('merge-stream');
+var streamqueue = require('streamqueue');
 var modernizr = require('gulp-modernizr');
 var react = require('gulp-react');
 
@@ -18,16 +18,22 @@ gulp.task('bower', function() {
 
 // Gulp Sass Task 
 gulp.task('sass', ['bower'], function() {
-  var sassStream,
-      cssStream;
+  var resetCSS,
+      coreCSS,
+      addOnCSS;
 
-  cssStream = gulp.src('./bower_components/normalize-css/normalize.css');
-  sassStream = gulp.src('./scss/{,*/}*.{scss,sass}')
+  resetCSS = gulp.src('./bower_components/normalize-css/normalize.css');
+  coreCSS = gulp.src('./scss/{,*/}*.{scss,sass}')
     .pipe(sass({
       errLogToConsole: true
     }));
 
-  return merge(cssStream, sassStream)
+  addOnCSS = gulp.src(['./bower_components/remodal/dist/remodal.css', './bower_components/remodal/dist/remodal.css']);
+  return streamqueue({ objectMode: true },
+            resetCSS,
+            coreCSS,
+            addOnCSS
+        )
 	.pipe(concat('styles.css'))
     	.pipe(cssMin({compatibility: 'ie8'}))
 	.pipe(gulp.dest('./css'));
@@ -94,6 +100,9 @@ gulp.task('js', function() {
             "test/workers/webworkers"
           ]
 	}))
+	.pipe(gulp.dest('./js/'));
+
+	gulp.src('./bower_components/remodal/dist/remodal.min.js')
 	.pipe(gulp.dest('./js/'));
 
 	return gulp.src('./js/movies.jsx')
