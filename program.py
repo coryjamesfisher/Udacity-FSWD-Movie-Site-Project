@@ -1,10 +1,7 @@
 # coding=UTF-8
-import fresh_tomatoes
+import movie_madness
 import media
 import json
-
-#toy_story = media.Movie("Toy Story", "A movie about a boy and his toys", "http://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg", "https://www.youtube.com/watch?v=vwyZH85NQC4")
-#toy_story.show_trailer()
 
 movies = []
 movies.append(media.Movie("Spirited Away", "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.", "https://upload.wikimedia.org/wikipedia/en/3/30/Spirited_Away_poster.JPG", "https://www.youtube.com/watch?v=ByXuk9QqQkk"))
@@ -38,4 +35,4 @@ movies.append(media.Movie(
 #gc = client.GoodreadsClient("zkaEljr59glgBtXNfXlZ1A", "L2UGbEH54khYDvh3NbcAMCjHY7NpWf7nbO5WmGFikg")
 #books = gc.search_books(booksearch, 1, "title")
 #print(books)
-fresh_tomatoes.open_movies_page(movies)
+movie_madness.open_movies_page(movies)
