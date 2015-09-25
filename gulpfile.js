@@ -28,7 +28,7 @@ gulp.task('sass', ['bower'], function() {
       errLogToConsole: true
     }));
 
-  addOnCSS = gulp.src(['./bower_components/remodal/dist/remodal.css', './bower_components/remodal/dist/remodal.css']);
+  addOnCSS = gulp.src(['./bower_components/remodal/dist/remodal.css', './bower_components/remodal/dist/remodal-default-theme.css']);
   return streamqueue({ objectMode: true },
             resetCSS,
             coreCSS,

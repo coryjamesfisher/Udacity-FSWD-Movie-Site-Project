@@ -1,30 +1,42 @@
 	var MovieTrailerModal = React.createClass({
-		componentDidUpdate: function() {
-
-			if (this.props.open == true) {
-				jQuery('body').append(jQuery(jQuery(this).html()).addClass('theRealOne').removeAttr('data-reactid'));
-				jQuery('.theRealOne').remodal().show();
-			} else {
-				//$().remodal().hide();
-			}
-
-	
-		},
 		render: function() {
 
+			if (this.props.open == true) {
+				var trailerYouTubeId = this.props.url.split('?')[1].split('v=')[1];
+				var ampersandPosition = trailerYouTubeId.indexOf('&');
+				if(ampersandPosition != -1) {
+				  trailerYouTubeId = trailerYouTubeId.substring(0, ampersandPosition);
+				}
+				var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+				$('.trailer_modal').find('iframe').remove();
+				$('.trailer_modal').append($("<iframe></iframe>", {
+				  'id': 'trailer-video',
+				  'type': 'text-html',
+				  'src': sourceUrl,
+				  'frameborder': 0,
+				  'width': 480,
+				  'height': 390,
+				  'allowfullscreen': ''
+				}));
+
+				$('.trailer_modal').remodal().open();
+				$('.trailer_modal').on('closed', function() {
+					$('.trailer_modal').find('iframe').remove();
+				});
+				
+			}
+
+			// Note this is currently a stub component.
+			// @todo figure out how to make reactJS play well with others
 			return (
-				<div data-remodal-id="modal" data-is-opened={this.props.open}>
-					Hello
-					<iframe style={{width:"100%", height: "100%"}} src={this.props.url}>
-					</iframe>
-				</div>
+				<div></div>	
 			);
 		}
 	});
 
 	var MovieGridCard = React.createClass({
 		handleClick: function() {
-			this.props.onGridClick();	
+			this.props.onGridClick(this.props.movie.trailer_youtube_url);	
 		},
 		render: function() {
 
@@ -82,9 +94,8 @@
 				is_modal_open: false
 			}
 		},
-		openModal: function() {
-//			this.state.is_modal_open = true;
-			this.setState({is_modal_open: true});
+		openModal: function(trailerUrl) {
+			this.setState({is_modal_open: true, url: trailerUrl});
 		},
 		closeModal: function() {
 			this.state.is_modal_open = false;
