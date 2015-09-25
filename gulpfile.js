@@ -105,6 +105,9 @@ gulp.task('js', function() {
 	gulp.src('./bower_components/remodal/dist/remodal.min.js')
 	.pipe(gulp.dest('./js/'));
 
+	gulp.src('./bower_components/jquery/dist/jquery.min.js')
+	.pipe(gulp.dest('./js/'));
+
 	return gulp.src('./js/movies.jsx')
 		.pipe(react())
 		.pipe(gulp.dest('./js/'));
