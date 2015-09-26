@@ -65,15 +65,26 @@ def imdb_lookup_movies(movie_titles):
 	result = results[0]
 	ia.update(result)
 
+	#from pprint import pprint
+	#pprint(vars(result))
+
 	# Parse the AKA for the movie.
         # The first one is usually the best.
         # The rest are specific to certain countries
-	our_title = result['aka'][0][:result['aka'][0].find('::')]
+	if 'aka' in result.keys() and len(result['aka']) > 0:
+          our_title = result['aka'][0][:result['aka'][0].find('::')]
+        else:
+          our_title = result['title']
+
+        if 'full-size cover url' in result.keys():
+          cover_url = result['full-size cover url']
+        else:
+          cover_url = ""
         
 	movie = media.Movie(
 		our_title,
 		result['plot outline'],
-		result['full-size cover url'],
+		cover_url,
 		""
 	)
 	movies.append(movie)
