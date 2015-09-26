@@ -36,6 +36,11 @@ figure {
   margin-left: auto;
   margin-right: auto;
 
+  img {
+    width: 100%;
+    height: auto;
+  }
+
   // Tablet or higher
   @include breakpoint(min-width 700px) {
     @include span(5);

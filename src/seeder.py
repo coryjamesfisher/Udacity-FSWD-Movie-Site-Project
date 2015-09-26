@@ -4,6 +4,20 @@ import media
 import pickle
 import os.path
 
+from apiclient.discovery import build
+from apiclient.errors import HttpError
+from oauth2client.tools import argparser
+
+
+# Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
+# tab of
+#   https://cloud.google.com/console
+# Please ensure that you have enabled the YouTube Data API for your project.
+DEVELOPER_KEY = "AIzaSyAIc1Ve2hBkf4k_H-Ue6bS26IGKNT3ljjE"
+YOUTUBE_API_SERVICE_NAME = "youtube"
+YOUTUBE_API_VERSION = "v3"
+
+
 # Get the users favorite movies
 def get_favorite_movie_titles():
     movie_titles = []
@@ -66,11 +80,38 @@ def imdb_lookup_movies(movie_titles):
 
     return movies
 
+def youtube_lookup_trailers(movies):
+    for movie in movies:
+        movie.youtube_trailer_id = youtube_search(movie.title + ' Trailer')
+
+    return movies
+
+def youtube_search(title):
+  youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
+    developerKey=DEVELOPER_KEY)
+
+  # Call the search.list method to retrieve results matching the specified
+  # query term.
+  search_response = youtube.search().list(
+    q=title,
+    part="id,snippet",
+    maxResults=1
+  ).execute()
+
+  # Add each result to the appropriate list, and then display the lists of
+  # matching videos, channels, and playlists.
+  for search_result in search_response.get("items", []):
+    if search_result["id"]["kind"] == "youtube#video":
+      return search_result["id"]["videoId"]
+
+  return ""
+
 # Ask the user for their favorite movies
 favorite_movie_titles = get_favorite_movie_titles()
 
 # Look up the movies on IMDB
 movies = imdb_lookup_movies(favorite_movie_titles)
+movies = youtube_lookup_trailers(movies)
 
 with open('cache/movie_seed.pickled', 'wb') as f:
     pickle.dump(movies, f)

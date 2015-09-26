@@ -2,11 +2,7 @@
 		render: function() {
 
 			if (this.props.open == true) {
-				var trailerYouTubeId = this.props.url.split('?')[1].split('v=')[1];
-				var ampersandPosition = trailerYouTubeId.indexOf('&');
-				if(ampersandPosition != -1) {
-				  trailerYouTubeId = trailerYouTubeId.substring(0, ampersandPosition);
-				}
+				var trailerYouTubeId = this.props.youtube_trailer_id;
 				var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
 				$('.trailer_modal').find('iframe').remove();
 				$('.trailer_modal').append($("<iframe></iframe>", {
@@ -36,7 +32,7 @@
 
 	var MovieGridCard = React.createClass({displayName: "MovieGridCard",
 		handleClick: function() {
-			this.props.onGridClick(this.props.movie.trailer_youtube_url);	
+			this.props.onGridClick(this.props.movie.youtube_trailer_id);	
 		},
 		render: function() {
 
@@ -45,7 +41,7 @@
 			return (
 				React.createElement("section", {onClick: this.handleClick, className: "movie-grid-card"}, 
 
-					React.createElement("figure", {"data-trailer-url": mov.trailer_youtube_url}, 
+					React.createElement("figure", {"data-trailer-id": mov.youtube_trailer_id}, 
 						React.createElement("img", {src: mov.poster_image_url}), 
 						React.createElement("figcaption", null, mov.title)
 					), 
@@ -90,12 +86,12 @@
 	var MovieGrid = React.createClass({displayName: "MovieGrid",
 		getInitialState: function() {
 			return {
-				url: "",
+				youtube_trailer_id: "",
 				is_modal_open: false
 			}
 		},
-		openModal: function(trailerUrl) {
-			this.setState({is_modal_open: true, url: trailerUrl});
+		openModal: function(trailer_id) {
+			this.setState({is_modal_open: true, youtube_trailer_id: trailer_id});
 		},
 		closeModal: function() {
 			this.state.is_modal_open = false;
@@ -116,7 +112,7 @@
 			return (
 			React.createElement("div", null, 
 				React.createElement("div", null, rows), 
-				React.createElement(MovieTrailerModal, {url: this.state.url, open: this.state.is_modal_open})
+				React.createElement(MovieTrailerModal, {youtube_trailer_id: this.state.youtube_trailer_id, open: this.state.is_modal_open})
 			)
 			);
 		}
