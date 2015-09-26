@@ -15,10 +15,10 @@ def moviesToJson(movies):
 
 def open_movies_page(movies):
     # Create or overwrite the output file
-    output_file = open('movie_madness.html', 'w')
+    output_file = open('htdocs/index.html', 'w')
 
     main_page_head = ""
-    template = open('movies.html', 'r')
+    template = open('templates/index.html', 'r')
     rendered_content = template.read()
     template.close()
 

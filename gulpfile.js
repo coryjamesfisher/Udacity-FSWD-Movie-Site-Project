@@ -36,7 +36,7 @@ gulp.task('sass', ['bower'], function() {
         )
 	.pipe(concat('styles.css'))
     	.pipe(cssMin({compatibility: 'ie8'}))
-	.pipe(gulp.dest('./css'));
+	.pipe(gulp.dest('./htdocs/css'));
 });
 
 gulp.task('js', function() {
@@ -100,17 +100,17 @@ gulp.task('js', function() {
             "test/workers/webworkers"
           ]
 	}))
-	.pipe(gulp.dest('./js/'));
+	.pipe(gulp.dest('./htdocs/js/'));
 
 	gulp.src('./bower_components/remodal/dist/remodal.min.js')
-	.pipe(gulp.dest('./js/'));
+	.pipe(gulp.dest('./htdocs/js/'));
 
 	gulp.src('./bower_components/jquery/dist/jquery.min.js')
-	.pipe(gulp.dest('./js/'));
+	.pipe(gulp.dest('./htdocs/js/'));
 
-	return gulp.src('./js/movies.jsx')
+	return gulp.src('./htdocs/js/movies.jsx')
 		.pipe(react())
-		.pipe(gulp.dest('./js/'));
+		.pipe(gulp.dest('./htdocs/js/'));
 });
 
 

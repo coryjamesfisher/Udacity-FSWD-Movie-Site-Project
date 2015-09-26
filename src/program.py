@@ -30,9 +30,5 @@ movies.append(media.Movie(
 "https://www.youtube.com/watch?v=6zhLBe319KE"
 ))
 
-#booksearch = ["Dune", "Ender's Game"]
-#from goodreads import client
-#gc = client.GoodreadsClient("zkaEljr59glgBtXNfXlZ1A", "L2UGbEH54khYDvh3NbcAMCjHY7NpWf7nbO5WmGFikg")
-#books = gc.search_books(booksearch, 1, "title")
-#print(books)
 movie_madness.open_movies_page(movies)
+
