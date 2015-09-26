@@ -15,8 +15,10 @@
 				  'allowfullscreen': ''
 				}));
 
+				self = this;
 				$('.trailer_modal').remodal().open();
 				$('.trailer_modal').on('closed', function() {
+					self.props.onCloseModal();
 					$('.trailer_modal').find('iframe').remove();
 				});
 				
@@ -112,7 +114,7 @@
 			return (
 			<div>
 				<div>{rows}</div>
-				<MovieTrailerModal youtube_trailer_id={this.state.youtube_trailer_id} open={this.state.is_modal_open}></MovieTrailerModal>
+				<MovieTrailerModal youtube_trailer_id={this.state.youtube_trailer_id} open={this.state.is_modal_open} onCloseModal={this.closeModal}></MovieTrailerModal>
 			</div>
 			);
 		}

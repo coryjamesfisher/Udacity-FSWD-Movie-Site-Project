@@ -15,8 +15,10 @@
 				  'allowfullscreen': ''
 				}));
 
+				self = this;
 				$('.trailer_modal').remodal().open();
 				$('.trailer_modal').on('closed', function() {
+					self.props.onCloseModal();
 					$('.trailer_modal').find('iframe').remove();
 				});
 				
@@ -112,7 +114,7 @@
 			return (
 			React.createElement("div", null, 
 				React.createElement("div", null, rows), 
-				React.createElement(MovieTrailerModal, {youtube_trailer_id: this.state.youtube_trailer_id, open: this.state.is_modal_open})
+				React.createElement(MovieTrailerModal, {youtube_trailer_id: this.state.youtube_trailer_id, open: this.state.is_modal_open, onCloseModal: this.closeModal})
 			)
 			);
 		}
