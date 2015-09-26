@@ -10,4 +10,3 @@ with open('cache/movie_seed.pickled','rb') as f:
 
 # Load the site in the browser
 movie_site_generator.open_movies_page(movies)
-

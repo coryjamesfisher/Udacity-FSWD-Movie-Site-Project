@@ -9,6 +9,7 @@ def get_favorite_movie_titles():
     movie_titles = []
     done_adding = False
 
+    # If the file exists. We give the user the opportunity to add to it.
     if os.path.isfile('cache/movie_seed.pickled'):
 	   print "Movies already in the database."
            print "Press 'n' to wipe it and start over."
@@ -38,7 +39,8 @@ def get_favorite_movie_titles():
 # Look up movies on imdb
 def imdb_lookup_movies(movie_titles):
 
-    ia = imdb.IMDb() # by default access the web.
+    # Get an handle to the imdb api
+    ia = imdb.IMDb()
 
     movies = []
     for title in movie_titles:
@@ -49,8 +51,9 @@ def imdb_lookup_movies(movie_titles):
 	result = results[0]
 	ia.update(result)
 
-#        from pprint import pprint
-#        pprint (vars(result))
+	# Parse the AKA for the movie.
+        # The first one is usually the best.
+        # The rest are specific to certain countries
 	our_title = result['aka'][0][:result['aka'][0].find('::')]
         
 	movie = media.Movie(
@@ -65,8 +68,6 @@ def imdb_lookup_movies(movie_titles):
 
 # Ask the user for their favorite movies
 favorite_movie_titles = get_favorite_movie_titles()
-
-print favorite_movie_titles
 
 # Look up the movies on IMDB
 movies = imdb_lookup_movies(favorite_movie_titles)

@@ -106,7 +106,7 @@
 
 			this.props.movies.forEach(function(movie) {
 
-				if (movie.title.indexOf(this.props.filterText) === -1) {
+				if (movie.title.toLowerCase().indexOf(this.props.filterText.toLowerCase()) === -1) {
 					return;
 				}
 
