@@ -1,50 +1,63 @@
+"""This module is designed to generate seeds for the movie site
+
+To generate the seeds it takes in a user's favorite movies and
+calls out to various APIs to get more information about the movies.
+It then outputs a list of media.Movie objects to a pickle(serialized)
+file.
+"""
+
 import imdb
-import json
 import media
 import pickle
 import os.path
 
 from apiclient.discovery import build
-from apiclient.errors import HttpError
-from oauth2client.tools import argparser
+#from apiclient.errors import HttpError
+#from oauth2client.tools import argparser
 
-
-# Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
-# tab of
-#   https://cloud.google.com/console
-# Please ensure that you have enabled the YouTube Data API for your project.
+# Constants for the youtube api
 DEVELOPER_KEY = "AIzaSyAIc1Ve2hBkf4k_H-Ue6bS26IGKNT3ljjE"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
-
-# Get the users favorite movies
 def get_favorite_movie_titles():
+    """This function gets a users favorite movie titles from input
+    Returns: list of strings(movie titles)
+    """
+
     movie_titles = []
     done_adding = False
 
     # If the file exists. We give the user the opportunity to add to it.
     if os.path.isfile('cache/movie_seed.pickled'):
-	   print "Movies already in the database."
-           print "Press 'n' to wipe it and start over."
-           print "or press 'Enter' to add to it." 
-           if raw_input() != "n":
-               # Load the serialized movies
-               with open('cache/movie_seed.pickled','rb') as f:
-                   movies = pickle.load(f)
-                   for movie in movies:
-                       movie_titles.append(movie.title)
+        print "Movies already in the database."
+        print "Press 'n' to wipe it and start over."
+        print "or press 'Enter' to add to it."
 
-    while (done_adding != True):
+        # N starts over - anything else adds to the movies in the pickle file
+        if raw_input() != "n":
+            # Load the serialized movies
+            with open('cache/movie_seed.pickled', 'rb') as movie_file:
+                movies = pickle.load(movie_file)
+                for movie in movies:
+                    movie_titles.append(movie.title)
+
+    # Prompt for more movies until the user says stop
+    while done_adding != True:
 
         print "Type a favorite movie name (Press enter twice when done):",
         user_input = raw_input()
 
+        # No input means stop
         if len(user_input) == 0:
-          done_adding = True
+            done_adding = True
+
+        # Double commas separate multiple movie titles
         elif user_input.find(',,'):
             for title in user_input.split(',,'):
-              movie_titles.append(title)
+                movie_titles.append(title)
+
+        # Single movie title was entered
         else:
             movie_titles.append(user_input)
 
@@ -52,78 +65,112 @@ def get_favorite_movie_titles():
 
 # Look up movies on imdb
 def imdb_lookup_movies(movie_titles):
+    """This method will lookup movies by their titles using IMDB's API
+
+    Args:
+        movie_titles: list of strings
+    Returns:
+        movies: list of media.Movie objects
+    """
 
     # Get an handle to the imdb api
-    ia = imdb.IMDb()
+    imdb_api = imdb.IMDb()
 
     movies = []
     for title in movie_titles:
 
-        results = ia.search_movie(title)
+        results = imdb_api.search_movie(title)
+
+        # Initialize variables in case no data found
+        our_title = title
+        cover_url = ""
+        plot_outline = ""
 
         # Take the first match and create the movie object
-	result = results[0]
-	ia.update(result)
+        if len(results) > 0:
+            result = results[0]
+            imdb_api.update(result)
 
-	#from pprint import pprint
-	#pprint(vars(result))
+            #from pprint import pprint
+            #pprint(vars(result))
 
-	# Parse the AKA for the movie.
-        # The first one is usually the best.
-        # The rest are specific to certain countries
-	if 'akas' in result.keys() and len(result['akas']) > 0:
-          our_title = result['akas'][0][:result['akas'][0].find('::')]
-        else:
-          our_title = result['title']
+            # Parse the AKA for the movie.
+            # The first one is usually the best.
+            # The rest are specific to certain countries
+            if 'akas' in result.keys() and len(result['akas']) > 0:
+                our_title = result['akas'][0][:result['akas'][0].find('::')]
+            else:
+                our_title = result['title']
 
-        if 'full-size cover url' in result.keys():
-          cover_url = result['full-size cover url']
-        else:
-          cover_url = ""
-        
-	movie = media.Movie(
-		our_title,
-		result['plot outline'],
-		cover_url,
-		""
-	)
-	movies.append(movie)
+            if 'full-size cover url' in result.keys():
+                cover_url = result['full-size cover url']
+
+            if 'plot outline' in result.keys():
+                plot_outline = result['plot outline']
+
+        movie = media.Movie(
+            our_title,
+            plot_outline,
+            cover_url,
+            ""
+        )
+        movies.append(movie)
 
     return movies
 
 def youtube_lookup_trailers(movies):
+    """This method will loop over the movies and lookup their trailers
+
+    Args:
+        movies: list of media.Movie objects
+    Returns:
+        movies: list of media.Movie objects with youtube id included
+    """
+
     for movie in movies:
         movie.youtube_trailer_id = youtube_search(movie.title + ' Trailer')
 
     return movies
 
 def youtube_search(title):
-  youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
-    developerKey=DEVELOPER_KEY)
+    """This method will look up a movie on youtube by the title
 
-  # Call the search.list method to retrieve results matching the specified
-  # query term.
-  search_response = youtube.search().list(
-    q=title,
-    part="id,snippet",
-    maxResults=1
-  ).execute()
+    Args:
+        title: string - the title of the movie
+    Returns:
+        movie_id: string key of the movie on youtube - empty if not found
+    """
 
-  # Add each result to the appropriate list, and then display the lists of
-  # matching videos, channels, and playlists.
-  for search_result in search_response.get("items", []):
-    if search_result["id"]["kind"] == "youtube#video":
-      return search_result["id"]["videoId"]
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
+                    developerKey=DEVELOPER_KEY)
 
-  return ""
+    # Call the search.list method to retrieve results matching the specified
+    # query term.
+    search_response = youtube.search().list(
+        q=title,
+        part="id,snippet",
+        maxResults=1
+    ).execute()
 
-# Ask the user for their favorite movies
-favorite_movie_titles = get_favorite_movie_titles()
+    # Add each result to the appropriate list, and then display the lists of
+    # matching videos, channels, and playlists.
+    for search_result in search_response.get("items", []):
+        if search_result["id"]["kind"] == "youtube#video":
+            return search_result["id"]["videoId"]
 
-# Look up the movies on IMDB
-movies = imdb_lookup_movies(favorite_movie_titles)
-movies = youtube_lookup_trailers(movies)
+    return ""
 
-with open('cache/movie_seed.pickled', 'wb') as f:
-    pickle.dump(movies, f)
+def main():
+    """Entry point of the seed program
+    """
+    # Ask the user for their favorite movies
+    favorite_movie_titles = get_favorite_movie_titles()
 
+    # Look up the movies on IMDB
+    movies = imdb_lookup_movies(favorite_movie_titles)
+    movies = youtube_lookup_trailers(movies)
+
+    with open('cache/movie_seed.pickled', 'wb') as movie_file:
+        pickle.dump(movies, movie_file)
+
+main()
