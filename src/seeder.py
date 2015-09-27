@@ -64,8 +64,11 @@ def get_favorite_movie_titles():
     return movie_titles
 
 # Look up movies on imdb
-def imdb_lookup_movies(movie_titles):
+def lookup_movies(movie_titles):
     """This method will lookup movies by their titles using IMDB's API
+
+    After retrieving the movie info from IMDB the program will then
+    reach out to various other API's for additional information
 
     Args:
         movie_titles: list of strings
@@ -114,23 +117,23 @@ def imdb_lookup_movies(movie_titles):
             cover_url,
             ""
         )
+
+        youtube_lookup_trailer(movie)
+
         movies.append(movie)
 
     return movies
 
-def youtube_lookup_trailers(movies):
-    """This method will loop over the movies and lookup their trailers
+def youtube_lookup_trailer(movie):
+    """This method will lookup a trailer for a movie
+
+    Note the movies passed in will have their youtube movie id injected
 
     Args:
-        movies: list of media.Movie objects
-    Returns:
-        movies: list of media.Movie objects with youtube id included
+        movie: media.Movie object
     """
 
-    for movie in movies:
-        movie.youtube_trailer_id = youtube_search(movie.title + ' Trailer')
-
-    return movies
+    movie.youtube_trailer_id = youtube_search(movie.title + ' Trailer')
 
 def youtube_search(title):
     """This method will look up a movie on youtube by the title
@@ -167,8 +170,7 @@ def main():
     favorite_movie_titles = get_favorite_movie_titles()
 
     # Look up the movies on IMDB
-    movies = imdb_lookup_movies(favorite_movie_titles)
-    movies = youtube_lookup_trailers(movies)
+    movies = lookup_movies(favorite_movie_titles)
 
     with open('cache/movie_seed.pickled', 'wb') as movie_file:
         pickle.dump(movies, movie_file)
