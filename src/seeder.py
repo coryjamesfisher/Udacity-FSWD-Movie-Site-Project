@@ -71,8 +71,8 @@ def imdb_lookup_movies(movie_titles):
 	# Parse the AKA for the movie.
         # The first one is usually the best.
         # The rest are specific to certain countries
-	if 'aka' in result.keys() and len(result['aka']) > 0:
-          our_title = result['aka'][0][:result['aka'][0].find('::')]
+	if 'akas' in result.keys() and len(result['akas']) > 0:
+          our_title = result['akas'][0][:result['akas'][0].find('::')]
         else:
           our_title = result['title']
 
