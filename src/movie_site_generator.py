@@ -1,21 +1,36 @@
+"""This module is used to create a web page from a list of movies
+
+After creating the web page it will launch it in the user's
+web browser.
+"""
+
 import webbrowser
 import os
-import re
 import json
 
-def moviesToJson(movies):
+def movies_to_json(movies):
+    """This method will convert movie objects to a json array
+    Args:
+        movies: list of media.Movie objects
+    """
 
     # Build a json representation of each movie and add it to
     # a json array
-    jsonString = "["
+    json_string = "["
     for movie in movies:
-        jsonString = jsonString + json.dumps(movie.__dict__) + ","
+        json_string = json_string + json.dumps(movie.__dict__) + ","
 
-    jsonString = jsonString[:-1] + "]"
+    # Strip trailing comma and close the array bracket
+    json_string = json_string[:-1] + "]"
 
-    return jsonString
+    return json_string
 
 def open_movies_page(movies):
+    """ Creates an html file and opens it in the browser
+    Args:
+        movies: list of media.Movie objects
+    """
+
     # Create or overwrite the output file
     output_file = open('htdocs/index.html', 'w')
 
@@ -25,7 +40,8 @@ def open_movies_page(movies):
     template.close()
 
     # Process template variables
-    rendered_content = rendered_content.replace('"{%media%}"', moviesToJson(movies));
+    rendered_content = rendered_content.replace('"{%media%}"',
+                                                movies_to_json(movies))
 
     # Output the file
     output_file.write(rendered_content)
