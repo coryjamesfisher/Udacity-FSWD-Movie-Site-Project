@@ -13,7 +13,7 @@ class Movie(object):
     __name__ = "Movie"
 
     def __init__(self, movie_title, movie_storyline,
-                 poster_image, trailer_youtube):
+                 poster_image, trailer_youtube, book_goodreads):
         """Creates a Movie object
 
         Args:
@@ -27,4 +27,5 @@ class Movie(object):
         self.storyline = movie_storyline
         self.poster_image_url = poster_image
         self.youtube_trailer_id = trailer_youtube
+        self.book_goodreads_id = book_goodreads
 

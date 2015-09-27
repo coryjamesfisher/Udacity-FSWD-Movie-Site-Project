@@ -10,6 +10,7 @@ import imdb
 import media
 import pickle
 import os.path
+import sys
 
 from apiclient.discovery import build
 #from apiclient.errors import HttpError
@@ -115,14 +116,27 @@ def lookup_movies(movie_titles):
             our_title,
             plot_outline,
             cover_url,
+            "",
             ""
         )
 
         youtube_lookup_trailer(movie)
+        try:
+            goodreads_lookup_book(movie)
+        except: 
+            print sys.exc_info()[0]
 
         movies.append(movie)
 
     return movies
+
+def goodreads_lookup_book(movie):
+    booksearch = [movie.title]
+    from goodreads import client
+    gc = client.GoodreadsClient("zkaEljr59glgBtXNfXlZ1A", "L2UGbEH54khYDvh3NbcAMCjHY7NpWf7nbO5WmGFikg")
+    books = gc.search_books(booksearch, 1, "title")
+    if len(books) > 0:
+        print books[0].title
 
 def youtube_lookup_trailer(movie):
     """This method will lookup a trailer for a movie
@@ -166,6 +180,7 @@ def youtube_search(title):
 def main():
     """Entry point of the seed program
     """
+
     # Ask the user for their favorite movies
     favorite_movie_titles = get_favorite_movie_titles()
 
