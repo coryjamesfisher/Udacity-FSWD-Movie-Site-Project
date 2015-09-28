@@ -11,6 +11,7 @@ import media
 import pickle
 import os.path
 import sys
+import json
 
 from apiclient.discovery import build
 #from apiclient.errors import HttpError
@@ -122,13 +123,27 @@ def lookup_movies(movie_titles):
 
         youtube_lookup_trailer(movie)
         try:
-            goodreads_lookup_book(movie)
+            #goodreads_lookup_book(movie)
+            google_lookup_book(movie)
         except: 
             print sys.exc_info()[0]
 
         movies.append(movie)
 
     return movies
+
+def google_lookup_book(movie):
+    books_api = build('books', 'v1')
+    vol = books_api.volumes()
+    request = vol.list(q = movie.title)
+
+    bookResponse = request.execute()
+
+    if len(bookResponse) > 0 and len(bookResponse['items']) > 0 and bookResponse['items'][0]['volumeInfo']['title'].lower() == movie.title.lower():
+        print bookResponse['items'][0]['volumeInfo']['title']
+        movie.google_books_id = bookResponse['items'][0]['id']
+    
+    return ""
 
 def goodreads_lookup_book(movie):
     booksearch = [movie.title]

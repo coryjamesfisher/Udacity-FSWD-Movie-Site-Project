@@ -108,6 +108,10 @@
 					return;
 				}
 
+				if (this.props.moviesWithBooks === true && movie.google_books_id.length == 0) {
+					return;
+				}
+
 				rows.push(<MovieGridCard onGridClick={this.openModal} movie={movie} key={movie.title}></MovieGridCard>);
 			}.bind(this));
 
