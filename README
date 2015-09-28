@@ -1,2 +1,0 @@
-# Run to set up python dependencies
-sudo pip install -r requirements.txt
