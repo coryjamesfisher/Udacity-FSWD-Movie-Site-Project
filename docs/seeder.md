@@ -16,3 +16,7 @@ Building
 ```bash
 sudo pip -r requirements.txt
 ```
+3. Install the npm dependencies
+```bash
+sudo npm install
+```
