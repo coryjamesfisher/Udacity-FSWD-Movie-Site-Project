@@ -1,4 +1,4 @@
-[Movie Site Generator](https://github.com/coryjamesfisher/Udacity-FSWD-Movie-Site-Project) — Movie Site Generator
+Movie Site Generator
 ==================================================
 
 Programs
