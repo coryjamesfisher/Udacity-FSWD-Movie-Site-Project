@@ -19,8 +19,10 @@ Package Structure
 |**[seed](seed)**            | Bash script helper to run the Seeder Program which builds the movie cache
 |**[run](run)**              | Bash script helper to run the Main Program which generates a web page
 |[gulpfile.js](gulpfile.js)  | File holding project's gulp tasks. Useful for recompiling JSX/SCSS or minifying
-|[package.json](package.json)| File holding project's NPM dependencies. This is used during the init script
+|[package.json](package.json)| File holding project's NPM dependencies. Used during the init script
+|[requirements.txt](requirements.txt)| File holding project's Python dependencies. Used during init and a gulp task
 |[bower.json](bower.json)    | File holding project's JavaScript/CSS dependencies. Used during init and a gulp task
+|[get-pip.py](get-pip.py)    | File used to install Python package manager(PIP)
 |**[htdocs](htdocs)**        | Files used by the web page itself go here. Equivalent to htdocs in Apache     
 |**[src](src)**              | All python application (non-install related) files go here                    
 |   - [media.py](src/media.py)     | The module holding project's Movie object
