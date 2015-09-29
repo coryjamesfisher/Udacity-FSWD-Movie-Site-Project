@@ -13,10 +13,12 @@ Building
 
 1. Ensure that the requirements above have been satisfied.
 2. Install the python dependencies
+
 	```bash
 	sudo pip -r requirements.txt
 	```
 3. Install the npm dependencies
+
 	```bash
 	sudo npm install
 	```
