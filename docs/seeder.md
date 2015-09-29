@@ -32,6 +32,16 @@ Build Instructions
 	```bash
 	sudo ./init
 	```
+	
+Execution Instructions
+--------------------------------------
+Run the following command to execute the program
+
+*Note: It is not necessary to run this program unless you want to choose different movies. The git repo has a prepackaged seed file with some samples. See the [Main Program](main.md) if you would like to skip this step*
+```bash
+./seed
+```
+
 
 Technology Overview
 --------------------------------------
