@@ -18,3 +18,5 @@ Run the following command to execute the program
 ```bash
 ./run
 ```
+
+From there follow the prompts.
