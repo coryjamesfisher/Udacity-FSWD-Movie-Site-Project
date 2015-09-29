@@ -1,4 +1,4 @@
-[Movie Site Generator](../README.md)
+[Movie Site Generator](../README.md) - Seeder
 ==================================================
 
 Build Requirements
