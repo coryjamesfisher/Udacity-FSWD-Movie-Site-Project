@@ -12,7 +12,7 @@ Building
 
 1. Ensure that the requirements above have been satisfied.
 
-	###Run the following commands with sudo or as root###
+	**Run the following commands with sudo or as root**
 
 	On debian based systems:
 	```bash
