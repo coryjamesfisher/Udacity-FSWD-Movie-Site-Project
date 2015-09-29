@@ -10,6 +10,12 @@ Programs
 2. [Main Program](docs/main.md)
 
     Reads data seed file and creates a web page
+    
+Useful Commands
+--------------------------------------
+1. **gulp init** - Recompile all gulp tasks including css/js
+2. **./seed**    - Seed the movies cache
+3. **./run**     - Build and run the movie site
 
 Package Structure
 --------------------------------------
