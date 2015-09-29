@@ -98,7 +98,6 @@ effective use of the following technologies.
 3. ReactJS - Facebook's newest framework for creating a JavaScript component+event model for page elements.
 4. Modernizr.js - Enables feature detection/shiming for HTML5
 5. Remodal - A simple jQuery modal plugin
-6. 
 
 ###4. Program Flow###
 1. Load Movie Titles
