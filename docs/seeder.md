@@ -4,8 +4,8 @@
 Build Requirements
 --------------------------------------
 
-1. [npm](https://docs.npmjs.com/getting-started/installing-node) - NodeJS JavaScript Package Manager
-2. [pip](https://pip.pypa.io/en/latest/installing/) - Python Package Manager
+1. [NodeJS](https://docs.npmjs.com/getting-started/installing-node) - NodeJS JavaScript Package Manager used to install many build tools
+2. [PIP](https://pip.pypa.io/en/latest/installing/) - Python Package Manager used to install 3rd party api clients
 
 
 Building
