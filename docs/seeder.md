@@ -5,8 +5,7 @@ Build Requirements
 --------------------------------------
 
 1. [NodeJS](https://docs.npmjs.com/getting-started/installing-node) - NodeJS JavaScript Package Manager used to install many build tools
-2. [PIP](https://pip.pypa.io/en/latest/installing/) - Python Package Manager used to install 3rd party api clients
-
+2. [Python](https://www.python.org/downloads/) - Python Programming Language
 
 Building
 --------------------------------------
@@ -26,14 +25,9 @@ Building
 	yum install nodejs npm && \
 	npm install
 	```
-2. Install the python dependencies
+2. Initialize the application
 
 	```bash
-	sudo pip -r requirements.txt
-	```
-3. Install the npm dependencies
-
-	```bash
-	sudo npm install
+	sudo ./init
 	```
 
