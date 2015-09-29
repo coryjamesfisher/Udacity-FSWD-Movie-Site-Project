@@ -14,7 +14,7 @@ Building
 
 	**Run the following commands with sudo or as root**
 
-	On debian based systems:
+	* On debian based systems:
 	```bash
 	sudo apt-get update && \
 	sudo apt-get install -y nodejs npm python-dev libxml2-dev libxslt1-dev && \
@@ -22,7 +22,7 @@ Building
 	sudo npm install
 	```
 	
-	On redhat based systems:
+	* On redhat based systems:
 	```bash
 	sudo yum install nodejs npm && \
 	sudo npm install
