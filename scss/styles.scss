@@ -66,6 +66,15 @@ figure {
   }
 }
 
+.remodal[data-remodal-id="modal-trailer"] {
+
+  a.book-link {
+    margin-top: 3px;
+    display: block;
+  }
+
+}
+
 /*
 .testing {
   @include span(12);

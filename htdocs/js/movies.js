@@ -4,8 +4,11 @@
 			if (this.props.open == true) {
 				var trailerYouTubeId = this.props.youtube_trailer_id;
 				var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-				$('.trailer_modal').find('iframe').remove();
-				$('.trailer_modal').append($("<iframe></iframe>", {
+				var trailerModal = $('.trailer_modal');
+				trailerModal.find('div').remove().end().find('a').remove();
+				
+				var container = $('<div></div>');
+				container.append($("<iframe></iframe>", {
 				  'id': 'trailer-video',
 				  'type': 'text-html',
 				  'src': sourceUrl,
@@ -15,11 +18,21 @@
 				  'allowfullscreen': ''
 				}));
 
+				if (this.props.google_book_id) {
+					container.append($('<a></a>', {
+						'href': 'https://books.google.com/books?id=' + this.props.google_book_id,
+						'target': '_blank',
+						'class': 'book-link'
+					}).text('Check Out the Book'));
+				}
+
+				trailerModal.append(container);
+
 				self = this;
-				$('.trailer_modal').remodal().open();
-				$('.trailer_modal').on('closed', function() {
+				trailerModal.remodal().open();
+				trailerModal.on('closed', function() {
 					self.props.onCloseModal();
-					$('.trailer_modal').find('iframe').remove();
+					trailerModal.find('div').remove();
 				});
 				
 			}
@@ -34,7 +47,7 @@
 
 	var MovieGridCard = React.createClass({displayName: "MovieGridCard",
 		handleClick: function() {
-			this.props.onGridClick(this.props.movie.youtube_trailer_id);	
+			this.props.onGridClick(this.props.movie.youtube_trailer_id, this.props.movie.google_book_id);	
 		},
 		render: function() {
 
@@ -89,11 +102,12 @@
 		getInitialState: function() {
 			return {
 				youtube_trailer_id: "",
+				google_book_id: "",
 				is_modal_open: false
 			}
 		},
-		openModal: function(trailer_id) {
-			this.setState({is_modal_open: true, youtube_trailer_id: trailer_id});
+		openModal: function(trailer_id, book_id) {
+			this.setState({is_modal_open: true, youtube_trailer_id: trailer_id, google_book_id: book_id});
 		},
 		closeModal: function() {
 			this.state.is_modal_open = false;
@@ -108,7 +122,7 @@
 					return;
 				}
 
-				if (this.props.moviesWithBooks === true && movie.google_books_id.length == 0) {
+				if (this.props.moviesWithBooks === true && movie.google_book_id.length == 0) {
 					return;
 				}
 
@@ -118,7 +132,7 @@
 			return (
 			React.createElement("div", null, 
 				React.createElement("div", null, rows), 
-				React.createElement(MovieTrailerModal, {youtube_trailer_id: this.state.youtube_trailer_id, open: this.state.is_modal_open, onCloseModal: this.closeModal})
+				React.createElement(MovieTrailerModal, {youtube_trailer_id: this.state.youtube_trailer_id, google_book_id: this.state.google_book_id, open: this.state.is_modal_open, onCloseModal: this.closeModal})
 			)
 			);
 		}

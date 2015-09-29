@@ -14,8 +14,6 @@ import sys
 import json
 
 from apiclient.discovery import build
-#from apiclient.errors import HttpError
-#from oauth2client.tools import argparser
 
 # Constants for the youtube api
 DEVELOPER_KEY = "AIzaSyAIc1Ve2hBkf4k_H-Ue6bS26IGKNT3ljjE"
@@ -96,9 +94,6 @@ def lookup_movies(movie_titles):
             result = results[0]
             imdb_api.update(result)
 
-            #from pprint import pprint
-            #pprint(vars(result))
-
             # Parse the AKA for the movie.
             # The first one is usually the best.
             # The rest are specific to certain countries
@@ -123,7 +118,6 @@ def lookup_movies(movie_titles):
 
         youtube_lookup_trailer(movie)
         try:
-            #goodreads_lookup_book(movie)
             google_lookup_book(movie)
         except: 
             print sys.exc_info()[0]
@@ -140,18 +134,9 @@ def google_lookup_book(movie):
     bookResponse = request.execute()
 
     if len(bookResponse) > 0 and len(bookResponse['items']) > 0 and bookResponse['items'][0]['volumeInfo']['title'].lower() == movie.title.lower():
-        print bookResponse['items'][0]['volumeInfo']['title']
-        movie.google_books_id = bookResponse['items'][0]['id']
+        movie.google_book_id = bookResponse['items'][0]['id']
     
     return ""
-
-def goodreads_lookup_book(movie):
-    booksearch = [movie.title]
-    from goodreads import client
-    gc = client.GoodreadsClient("zkaEljr59glgBtXNfXlZ1A", "L2UGbEH54khYDvh3NbcAMCjHY7NpWf7nbO5WmGFikg")
-    books = gc.search_books(booksearch, 1, "title")
-    if len(books) > 0:
-        print books[0].title
 
 def youtube_lookup_trailer(movie):
     """This method will lookup a trailer for a movie

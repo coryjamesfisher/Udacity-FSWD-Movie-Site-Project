@@ -21,11 +21,12 @@ class Movie(object):
             movie_storyline: string containing the movie's plot/storyline
             poster_image: string containing the URL of the poster image
             trailer_youtube: string ID of the video for the trailer
+            book_google: string ID of the book matching the movie's name
         """
 
         self.title = movie_title
         self.storyline = movie_storyline
         self.poster_image_url = poster_image
         self.youtube_trailer_id = trailer_youtube
-        self.google_books_id = book_google
+        self.google_book_id = book_google
 
