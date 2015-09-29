@@ -90,5 +90,15 @@ effective use of the following technologies.
 6. 
 
 ###4. Program Flow###
-1.
+1. Load Movie Titles
+	1. Ask the user if they want to modify the existing file or start from sratch.
+	2. If modifying existing preload the movies from the file
+	3. Allow the user to type in movies all one one line separated by **,,** or one movie on each line
+2. Pull Information from APIs
+	1. A loop processes one movie at a time that way we don't make APIs angry by making the calls too fast
+	2. First we get the base info from the IMDB API
+	3. Then we attempt to get a youtube video id matching the trailer from the Youtube API
+	4. Finally we try to get a google books id matching the book from the Google Books API
+3. Write Movie Information to a File
+	1. Info is written in pickle format to cache/movie_seed.pickled where it can be picked up by the [Site](site.md) program
 	
