@@ -29,6 +29,7 @@ Build Instructions
 		```
 2. Initialize the application
 
+	*Note: This will install the latest version of [PIP](https://pip.readthedocs.org/en/stable/installing/) on your system.*
 	```bash
 	sudo ./init
 	```
