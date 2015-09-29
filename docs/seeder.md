@@ -15,13 +15,14 @@ Building
 
 	On debian based systems:
 	```bash
-	apt-get install nodejs npm python-dev libxml2-dev libxslt1-dev
+	apt-get update && \
+	apt-get install nodejs npm python-dev libxml2-dev libxslt1-dev && \
 	npm install
 	```
 	
 	On redhat based systems:
 	```bash
-	yum install nodejs npm
+	yum install nodejs npm && \
 	npm install
 	```
 2. Install the python dependencies
