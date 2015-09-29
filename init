@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo python get-pip.py
+python get-pip.py
 npm install
-sudo ./node_modules/gulp/bin/gulp.js init
+./node_modules/gulp/bin/gulp.js init
