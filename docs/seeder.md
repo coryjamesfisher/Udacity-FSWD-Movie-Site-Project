@@ -46,7 +46,7 @@ effective use of the following technologies.
 		This tool is useful because it can install many other build tools that greatly
 		assist in development. The main tools installed using node are as follows:
 		
-		*Note you can find more info in NodeJS's [package.json](../package.json) file where all of the module dependencies are defined*
+		*For more info check out the project's [package.json](../package.json) file where all of the module dependencies are defined*
 		* Gulp
 		* Bower
 		* SASS
@@ -57,18 +57,33 @@ effective use of the following technologies.
 		This tool is useful because it acts as a JavaScript task manager. It has a useful
 		stream syntax that allows you to pipe source files to Gulp modules. We use this as
 		our primary build tool. If you need to update the jsx/sass files or bower dependencies
-		you would run: ```gulp init```. For more information see ```gulp help``` or take a look
-		at the [gulpfile.js](../gulpfile.js) file.
+		you would run: ```gulp init```. 
+
+		*For more info try ```gulp help``` or take a look at the [gulpfile.js](../gulpfile.js) file.*
 
 	3. SASS (CSS Precompiler - Run from a Gulp Task)
 	
 		This tool is useful because it simplifies your CSS syntax but expanding a nested curly
 		brace structure into fully qualified CSS selectors. It also has support for variables
 		and plugins of it's own. We compile our grid system (Susy) as well as some responsive
-		helper mixins. See [styles.scss](../scss/styles.scss) or take a look at the sass task in [gulpfile.js](../gulpfile.js).
+		helper mixins. 
+
+		*See [styles.scss](../scss/styles.scss) or take a look at the sass task in [gulpfile.js](../gulpfile.js).*
 	4. Bower (JS/CSS Dependency/Package Manager)
 	
 		This tool is useful because it will download and manage javascript package
-		versions and dependencies. We install Susy, Compass Breakpoint, NormalizeCSS, Remodal, and jQuery with Bower. See the [bower.json](../bower.json) file for more information.
+		versions and dependencies. We install Susy, Compass Breakpoint, NormalizeCSS, Remodal, and jQuery with Bower. 
 
+		*See the [bower.json](../bower.json) file for more information.*
+
+2. CSS Technologies
+	1. Susy
+	2. Compass Breakpoint
+	3. NormalizeCSS
+
+3. JS Technologies
+	1. jQuery
+	2. JSX
+	3. ReactJS
+	4. Remodal
 		
