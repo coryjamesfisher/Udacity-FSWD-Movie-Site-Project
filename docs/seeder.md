@@ -15,7 +15,7 @@ Building
 
 	On debian based systems:
 	```bash
-	apt-get install nodejs npm
+	apt-get install nodejs npm python-dev libxml2-dev libxslt1-dev
 	npm install
 	```
 	
