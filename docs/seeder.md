@@ -17,6 +17,7 @@ Building
 	```bash
 	apt-get update && \
 	apt-get install nodejs npm python-dev libxml2-dev libxslt1-dev && \
+	ln -s /usr/bin/nodejs /usr/bin/node && \
 	npm install
 	```
 	
