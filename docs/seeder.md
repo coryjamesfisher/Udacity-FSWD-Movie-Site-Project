@@ -77,13 +77,14 @@ effective use of the following technologies.
 		*See the [bower.json](../bower.json) file for more information.*
 
 2. CSS Technologies
-	1. Susy
-	2. Compass Breakpoint
-	3. NormalizeCSS
+	1. Susy - A pure CSS responsive grid solution.
+	2. Compass Breakpoint - Helps us build Susy grids with easy responsive breakpoints.
+	3. NormalizeCSS - Forces browsers to render elements closer to modern standards.
 
 3. JS Technologies
-	1. jQuery
-	2. JSX
-	3. ReactJS
-	4. Remodal
+	1. jQuery - The worlds most used JavaScript library
+	2. JSX - A descendent of JavaScript which allows html to be written free-form in the JS code. This compiles to plain JavaScript using a task in [gulpfile.js](../gulpfile.js).
+	3. ReactJS - Facebook's newest framework for creating a JavaScript component+event model for page elements.
+	4. Modernizr.js - Enables feature detection/shiming for HTML5
+	5. Remodal - A simple jQuery modal plugin
 		
