@@ -100,5 +100,5 @@ effective use of the following technologies.
 	3. Then we attempt to get a youtube video id matching the trailer from the Youtube API
 	4. Finally we try to get a google books id matching the book from the Google Books API
 3. Write Movie Information to a File
-	1. Info is written in pickle format to cache/movie_seed.pickled where it can be picked up by the [Site](site.md) program
+	1. Info is written in pickle format to cache/movie_seed.pickled where it can be picked up by the [Main Program](site_generator.md) program
 	
