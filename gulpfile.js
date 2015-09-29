@@ -114,16 +114,10 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('./htdocs/js/'));
 });
 
-gulp.task('build-npm-depends', function() {
-	gulp.src(['./package.json'])
-		.pipe(install());
-});
-
-gulp.task('build-dependencies', ['build-npm-depends'], function() {
+gulp.task('build-dependencies', function() {
 	gulp.src(['./requirements.txt'])
 		.pipe(install());
 });
-
 
 gulp.task('init', ['build-dependencies', 'bower', 'sass', 'js'])
 gulp.task('default', ['sass', 'js']);

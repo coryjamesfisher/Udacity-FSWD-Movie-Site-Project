@@ -1,3 +1,4 @@
 #!/bin/bash
 
+npm install
 sudo ./node_modules/gulp/bin/gulp.js init
