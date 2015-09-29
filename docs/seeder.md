@@ -15,18 +15,18 @@ Building
 	**Run the following commands with sudo or as root**
 
 	* On debian based systems:
-	```bash
-	sudo apt-get update && \
-	sudo apt-get install -y nodejs npm python-dev libxml2-dev libxslt1-dev && \
-	sudo ln -s /usr/bin/nodejs /usr/bin/node && \
-	sudo npm install
-	```
+		```bash
+		sudo apt-get update && \
+		sudo apt-get install -y nodejs npm python-dev libxml2-dev libxslt1-dev && \
+		sudo ln -s /usr/bin/nodejs /usr/bin/node && \
+		sudo npm install
+		```
 	
 	* On redhat based systems:
-	```bash
-	sudo yum install nodejs npm && \
-	sudo npm install
-	```
+		```bash
+		sudo yum install nodejs npm && \
+		sudo npm install
+		```
 2. Initialize the application
 
 	```bash
