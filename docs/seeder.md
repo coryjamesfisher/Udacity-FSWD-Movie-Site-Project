@@ -17,15 +17,15 @@ Build Instructions
 	* On debian based systems:
 		```bash
 		sudo apt-get update && \
-		sudo apt-get install -y nodejs npm python-dev libxml2-dev libxslt1-dev && \
+		sudo apt-get install -y git nodejs npm python-dev libxml2-dev libxslt1-dev && \
 		sudo ln -s /usr/bin/nodejs /usr/bin/node && \
 		sudo npm install
 		```
 	
 	* On redhat based systems:
 		```bash
-		sudo yum install nodejs npm && \
-		sudo npm install
+		curl -sL https://rpm.nodesource.com/setup | bash - && \
+		yum install -y git python-devel.x86_64 nodejs libxml2-devel.x86_64 libxslt-devel.x86_64 gcc.x86_64
 		```
 2. Initialize the application
 
@@ -87,4 +87,8 @@ effective use of the following technologies.
 3. ReactJS - Facebook's newest framework for creating a JavaScript component+event model for page elements.
 4. Modernizr.js - Enables feature detection/shiming for HTML5
 5. Remodal - A simple jQuery modal plugin
+6. 
+
+###4. Program Flow###
+1.
 	
