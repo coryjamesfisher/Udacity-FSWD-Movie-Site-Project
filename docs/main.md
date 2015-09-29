@@ -14,7 +14,7 @@ Execution Instructions
 --------------------------------------
 Run the following command to execute the program
 
-*Note You may wish to seed the movie list before running. See the [Seeder](seeder.md)*
+*Note: If you wish to seed the movie list before running check out the [Seed Program](seeder.md)*
 ```bash
 ./run
 ```
