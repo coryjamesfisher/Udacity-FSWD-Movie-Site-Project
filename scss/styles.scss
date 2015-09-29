@@ -21,12 +21,35 @@ figure {
   @include container;
 }
 
+header {
+  text-align: center;
+  font-family: Impact, Charcoal, sans-serif;
+  font-weight:normal;
+  font-size: 50px;
+
+  @include breakpoint(min-width 700px) {
+    font-size: 100px;
+  }
+}
 .movie-page {
   @include span(12);
+
+
+  .movie-search-label {
+    display: inline;
+    padding-right: 10px;
+  }
+
   @include breakpoint(min-width 700px) {
     @include span(10);
     margin-left: span(2);
+    .movie-search-label {
+      display: block;
+      padding-right: 0px;
+    }
   }
+
+    
 }
 
 .movie-grid-card {
@@ -75,21 +98,12 @@ figure {
 
 }
 
-/*
-.testing {
-  @include span(12);
-}
+footer {
 
-.testing2 {
-  @include span(2);
-  margin-left: span(4);
-}
+  text-align: center;
 
-.testing3 {
-  @include span(2);
-  margin-left: span(6);
-  @include breakpoint(20em) {
-    @include span(4); 
-    margin-left: span(3);
+  .copyright {
+    font-weight: bold;
   }
-}*/
+}
+

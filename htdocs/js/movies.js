@@ -76,9 +76,10 @@
 	render: function() {
 	    return (
 		React.createElement("form", null, 
+		React.createElement("span", {className: "movie-search-label"}, "Find Movies:"), 
 		React.createElement("input", {
 		    type: "text", 
-		    placeholder: "Search...", 
+		    placeholder: "Enter a Movie Title", 
 		    value: this.props.filterText, 
 		    ref: "filterTextInput", 
 		    onChange: this.handleChange}
