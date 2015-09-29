@@ -12,6 +12,18 @@ Building
 --------------------------------------
 
 1. Ensure that the requirements above have been satisfied.
+
+	On debian based systems:
+	```bash
+	apt-get install nodejs npm
+	npm install
+	```
+	
+	On redhat based systems:
+	```bash
+	yum install nodejs npm
+	npm install
+	```
 2. Install the python dependencies
 
 	```bash
@@ -22,3 +34,4 @@ Building
 	```bash
 	sudo npm install
 	```
+
