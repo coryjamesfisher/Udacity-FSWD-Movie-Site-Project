@@ -18,7 +18,13 @@
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-watch": "~4.3.5",
-    "streamqueue": "^1.1.1"
+    "streamqueue": "^1.1.1",
+    "async-each": "~0.1.6",
+    "glob-parent": "~2.0.0",
+    "is-glob": "~2.0.0",
+    "arrify": "~1.0.0",
+    "readdirp": "~2.0.0",
+    "is-binary-path": "~1.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
